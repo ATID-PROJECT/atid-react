@@ -1,0 +1,9 @@
+.infiniteScroll > div:first-child
+{
+    width: '100%';
+    display: flex;
+    flex-wrap: wrap;
+}
+.infiniteScroll{
+    width: 100%;
+}

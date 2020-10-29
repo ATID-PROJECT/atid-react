@@ -1,0 +1,14 @@
+{
+  "name": "ATID",
+  "url": "http://some-company/schema/bpmn/cutomNs",
+  "prefix": "atid",
+  "types": [
+    {
+      "name": "triangle",
+      "id": "com.camunda.example.MailTask",
+      "appliesTo": [
+        "custom:triangle"
+      ]
+    }
+  ]
+}

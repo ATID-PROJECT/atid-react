@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "app"; 
+    src: url("../font/app.eot"),
+      url("../font/app.woff") format("woff"),
+      url("../font/app.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "app";
+}
+.io-import-export {
+  position: fixed;
+  margin-left: 25px;
+  z-index: 5;
+}
+.io-import-export {
+  bottom: 25px;
+}
+.io-import-export .inactive {
+  opacity: 0.3;
+}
+.io-import {
+  margin-right: 10px;
+}
+.io-control {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  padding: 5px;
+}
+.io-control hr {
+  border: none;
+  border-top: solid 1px #eee;
+}
+.io-editing-tools .io-control {
+  margin-left: 10px;
+}
+.io-editing-tools .io-control button {
+  margin: 0;
+}
+.io-control-list {
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+}
+.io-control-list a,
+.io-control-list a:visited,
+.io-control-list button {
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 26px;
+  color: #555555;
+  background: none;
+  border: none;
+}
+.io-control-list a:hover,
+.io-control-list a:visited:hover,
+.io-control-list button:hover {
+  color: #333333;
+}
+.io-control-list a.inactive,
+.io-control-list a:visited.inactive,
+.io-control-list button.inactive {
+  color: #e0e0e0;
+  cursor: default;
+}
+.io-control-list.io-horizontal,
+.io-control-list.io-horizontal li {
+  display: inline-block;
+}
+.io-control-list.io-horizontal a {
+  padding: 2px;
+  margin: 0 5px;
+}
+.io-control-list.io-horizontal button {
+  margin: 0 5px;
+}
+.icon-open:before {
+  content: "\f41e";
+}
+.vr {
+  height: 18px;
+  display: inline-block;
+  border-right: solid 1px #ccc;
+}
+.icon-plus-circled:before {
+  content: "\f418";
+}
+.icon-download:before {
+  content: "\f41b";
+}
+.icon-picture:before {
+  content: "\f416";
+}

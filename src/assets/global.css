@@ -1,0 +1,146 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #EDEFF3 !important;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.m-vh-100{
+  min-height: 100vh;
+}
+
+.img-cover{
+  width: 100%;
+}
+
+.vertical-center{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.bg-dark {
+  background-color: #3F3D56;
+}
+
+.primary-btn{
+  background-color: #21819F;
+  align-self: baseline;
+  color: #fff;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.primary-btn:hover{
+  background-color: #166D88;
+  color: #fff;
+}
+
+.secondary-btn{
+  background-color: #21819F;
+  color: #fff;
+  padding: 8px 20px;
+  display: inline-block;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover{
+  background-color: #187491;
+  color: #fff;
+  padding: 8px 20px;
+  display: inline-block;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.white-outline-button{
+  padding: 7px 22px;
+  border-radius: 2px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  cursor: pointer;
+  margin: 0 4px;
+  border: 1px solid #fff;
+  display: inline-block;
+}
+
+.white-button {
+  display: inline-block;
+  background-color: #fff;
+  padding: 7px 22px;
+  cursor: pointer;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+  text-decoration: none !important;
+}
+
+.border-sides::before{
+  content: "";
+  height: 1px !important;
+  width: 45px;
+  background-color: #DBD5D5A3;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+.border-sides::after{
+  content: "";
+  height: 1px !important;
+  width: 45px;
+  background-color: #DBD5D5A3;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 3px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.border-list::after{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  height: 1px;
+  width: calc(100% - 20px);
+  background: #C2BEBE6E;
+}
+
+.rbc-day-bg{
+  background-color: #fff;
+}
+
+.rbc-today{
+  background-color: #d4e4f0;
+}
+
+.rbc-current{
+  color: #7f8686;
+}
+/* bootstrap custom */
+
+.mt-7,
+.my-7 {
+  margin-top: 7rem !important;
+}
+
+.scrollbar-container{
+  border-right: 1px solid #ddd
+}

@@ -1,0 +1,7 @@
+.transparent .MuiAppBar-root{
+    background: transparent !important;
+    box-shadow: none !important;
+}
+/*.MuiAppBar-root{
+  background: #4c5273 !important;
+}*/
