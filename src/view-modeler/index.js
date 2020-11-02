@@ -8,7 +8,6 @@ import {
 import inherits from 'inherits';
 
 import CustomModule from './custom';
-import { throws } from 'assert';
 
 
 export default function ViewModeler(options,click) {

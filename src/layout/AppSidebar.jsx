@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {connect} from 'react-redux';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import cx from 'classnames';
 
 import Nav from 'components/AppNav/VerticalNavWrapper.js';
@@ -18,34 +18,32 @@ class AppSidebar extends Component {
     state = {};
 
     toggleMobileSidebar = () => {
-        let {enableMobileMenu, setEnableMobileMenu} = this.props;
+        let { enableMobileMenu, setEnableMobileMenu } = this.props;
         setEnableMobileMenu(!enableMobileMenu);
     }
 
     render() {
         let {
             backgroundColor,
-            enableBackgroundImage,
             enableSidebarShadow,
-            backgroundImage,
             backgroundImageOpacity,
         } = this.props;
 
         return (
             <Fragment>
-                <div className="sidebar-mobile-overlay" onClick={this.toggleMobileSidebar}/>
+                <div className="sidebar-mobile-overlay" onClick={this.toggleMobileSidebar} />
                 <ReactCSSTransitionGroup
                     component="div"
-                    className={cx("app-sidebar", backgroundColor, {'sidebar-shadow': enableSidebarShadow})}
+                    className={cx("app-sidebar", backgroundColor, { 'sidebar-shadow': enableSidebarShadow })}
                     transitionName="SidebarAnimation"
                     transitionAppear={true}
                     transitionAppearTimeout={1500}
                     transitionEnter={false}
                     transitionLeave={false}>
-                    <HeaderLogo/>
+                    <HeaderLogo />
                     <PerfectScrollbar>
                         <div className="app-sidebar__inner">
-                            <Nav/>
+                            <Nav />
                         </div>
                     </PerfectScrollbar>
                     <div

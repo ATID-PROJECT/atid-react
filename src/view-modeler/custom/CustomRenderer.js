@@ -153,7 +153,7 @@ export default function CustomRenderer(config, canvas, eventBus, styles, textRen
     var cx = width / aux,
         cy = height / aux;
 
-    var attrs = computeStyle(attrs, {
+    var attrs = computeStyle({
       stroke: stroke,
       strokeWidth: 2,
       fill: color
@@ -248,7 +248,7 @@ export default function CustomRenderer(config, canvas, eventBus, styles, textRen
     var cx = width / 2,
         cy = height / 2;
 
-    var attrs = computeStyle(attrs, {
+    var attrs = computeStyle({
       stroke: stroke,
       strokeWidth: 3,
       fill: fill

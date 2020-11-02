@@ -102,9 +102,6 @@ export default function CustomRenderer(config, canvas, eventBus, styles, textRen
 
 
   this.drawActivity = function(p, element, side) {
-    var halfSide = side / 2,
-        points,
-        attrs;
 
     var polygon = svgCreate('polygon');
 
@@ -170,7 +167,7 @@ export default function CustomRenderer(config, canvas, eventBus, styles, textRen
     var cx = width / aux,
         cy = height / aux;
 
-    var attrs = computeStyle(attrs, {
+    var attrs = computeStyle({
       stroke: stroke,
       strokeWidth: 2,
       fill: color
@@ -227,7 +224,7 @@ export default function CustomRenderer(config, canvas, eventBus, styles, textRen
     var cx = width / 2,
         cy = height / 2;
 
-    var attrs = computeStyle(attrs, {
+    var attrs = computeStyle({
       stroke: stroke,
       strokeWidth: 3,
       fill: fill
@@ -400,9 +397,7 @@ function drawPath(parentGfx, d, attrs) {
   this.drawCustomConnection = function(p, element) {
     var pathData = createPathFromConnection(element);
 
-      var fill = getFillColor(element, defaultFillColor),
-          stroke = getStrokeColor(element, defaultStrokeColor);
-
+      var fill = getFillColor(element, defaultFillColor);
       var attrs = {
         strokeLinejoin: 'round',
         markerEnd: marker('sequenceflow-end', fill, '#555'),

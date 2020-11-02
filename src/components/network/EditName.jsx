@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -17,7 +17,7 @@ import { Tooltip } from "@material-ui/core";
 import PropTypes from 'prop-types';
 
 function EditName(props) {
-  
+
     const [values, setValues] = React.useState({
         name: "",
         open: false,
@@ -26,7 +26,7 @@ function EditName(props) {
     const handleClickOpen = () => {
         setValues({ ...values, open: true });
     }
-  
+
     const handleClose = () => {
         setValues({ ...values, open: false });
     }
@@ -36,8 +36,7 @@ function EditName(props) {
     };
 
     const existErros = () => {
-        if( values.name.length < 2)
-        {
+        if (values.name.length < 2) {
             toast("Mínimo 2 caracteres.", {
                 transition: Bounce,
                 closeButton: true,
@@ -45,33 +44,32 @@ function EditName(props) {
                 position: 'bottom-right',
                 type: 'error'
             });
-            
+
             return true;
         }
         return false;
     }
 
     const handleSave = () => {
-        if( existErros() ) return;
+        if (existErros()) return;
 
         handleClose();
 
-        userService.sendPOSTRequest("/users/activity/save", 
-        {
-            id: props.id_network,
-            name: values.name,
-        },
-        function(response)
-        {
-            toast(response["message"], {
-                transition: Bounce,
-                closeButton: true,
-                autoClose: 5000,
-                position: 'bottom-right',
-                type: 'success'
-            })
-            props.setTitle( values.name );
-        });
+        userService.sendPOSTRequest("/users/activity/save",
+            {
+                id: props.id_network,
+                name: values.name,
+            },
+            function (response) {
+                toast(response["message"], {
+                    transition: Bounce,
+                    closeButton: true,
+                    autoClose: 5000,
+                    position: 'bottom-right',
+                    type: 'success'
+                })
+                props.setTitle(values.name);
+            });
     }
 
 
@@ -79,7 +77,7 @@ function EditName(props) {
         <div>
             <Tooltip onClick={handleClickOpen} disableFocusListener title="Alterar Nome">
                 <Button>
-                    { props.content }
+                    {props.content}
                 </Button>
             </Tooltip>
 
@@ -87,7 +85,7 @@ function EditName(props) {
                 <DialogTitle id="form-dialog-title">Alterar Nome</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                    Atribua um nome para facilitar localizar a rede na hora da busca.
+                        Atribua um nome para facilitar localizar a rede na hora da busca.
                     </DialogContentText>
                     <TextField
                         autoFocus
@@ -111,7 +109,7 @@ function EditName(props) {
             </Dialog>
         </div>
     );
-    
+
 }
 
 EditName.propTypes = {

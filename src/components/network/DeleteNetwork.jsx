@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -10,21 +10,11 @@ import { useTheme } from "@material-ui/core/styles";
 import { userService } from '_services';
 import PropTypes from "prop-types";
 
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import { Tooltip } from "@material-ui/core";
-
 import {
   toast,
   Bounce
 } from 'react-toastify';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
-  }
-}));
 
 function DeleteActivity(props) {
   const theme = useTheme();

@@ -19,26 +19,26 @@ const useStyles = makeStyles(theme => ({
 export default function LogWindow(props) {
   const classes = useStyles();
 
-  const [logsNetwork, setLogsNetwork] = React.useState( [] );
+  const [logsNetwork, setLogsNetwork] = React.useState([]);
 
   useEffect(() => {
-    userService.sendGETRequest("/network/logs", {network: props.network_id}, function(result){
-        setLogsNetwork( result['json_list']);
+    userService.sendGETRequest("/network/logs", { network: props.network_id }, function (result) {
+      setLogsNetwork(result['json_list']);
     });
-  },[]);
+  }, [props.network_id]);
 
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
-          {logsNetwork.map(function(item){
-              return <ListItem button>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={item.user_id} secondary={item.description} />
-            </ListItem>
-          })}
-        
+        {logsNetwork.map(function (item) {
+          return <ListItem button>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={item.user_id} secondary={item.description} />
+          </ListItem>
+        })}
+
       </List>
     </div>
   );

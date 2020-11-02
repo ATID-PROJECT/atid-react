@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {withRouter} from 'react-router-dom';
 
 import TimelineIcon from '@material-ui/icons/Timeline';
@@ -56,7 +56,7 @@ function Nav(props){
                 <div style={styles.menuLink}>
                     <Link to="/painel/conectar">
                         <div className="secondary-btn mt-3 mb-4" style={{ display: 'flex' }}>
-                            <a style={{ flex: 1, textAlign: 'center' }}>Conectar</a>
+                            <div style={{ flex: 1, textAlign: 'center' }}>Conectar</div>
                             <AddIcon />
                         </div>
                     </Link>
@@ -65,7 +65,7 @@ function Nav(props){
                             <Link to={item.link} key={index}>
                                 <div style={styles.link}>
                                     {item.icon}
-                                    <a className={item.link == props.location.pathname ? "font-weight-bold" : ""} style={{color: "#333"}}>{item.title}</a>
+                                    <span className={item.link === props.location.pathname ? "font-weight-bold" : ""} style={{color: "#333"}}>{item.title}</span>
                                 </div>
                             </Link>
                         )

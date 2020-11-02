@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     height: 28,
     margin: 4,
   },
-  errorMessage:{
+  errorMessage: {
     margin: 0,
     paddingTop: 15,
   }
@@ -54,13 +54,13 @@ export default function SharedPannel(props) {
     hasLoaded: false
   });
 
-  if( !values.hasLoaded){
-    setValues({...values,hasLoaded: true});
+  if (!values.hasLoaded) {
+    setValues({ ...values, hasLoaded: true });
 
     userService.sendGETRequest("/users/share", {
       network: props.network
-    }, function(response){
-      addUser( response );
+    }, function (response) {
+      addUser(response);
     });
   }
 
@@ -68,8 +68,8 @@ export default function SharedPannel(props) {
     userService.sendPOSTRequest("/users/share", {
       network: props.network,
       email: values.email,
-    }, function(response){
-      setValues({...values,hasLoaded: false});
+    }, function (response) {
+      setValues({ ...values, hasLoaded: false });
 
       toast('Usuário adicionado', {
         transition: Bounce,
@@ -79,7 +79,7 @@ export default function SharedPannel(props) {
         type: 'success'
       });
 
-    }, function( error ){
+    }, function (error) {
 
       toast(error, {
         transition: Bounce,
@@ -95,8 +95,8 @@ export default function SharedPannel(props) {
     userService.sendDELETERequest("/users/share", {
       network: props.network,
       email: email,
-    }, function(response){
-      setValues({...values,hasLoaded: false});
+    }, function (response) {
+      setValues({ ...values, hasLoaded: false });
     });
   }
 
@@ -105,40 +105,40 @@ export default function SharedPannel(props) {
   };
 
   return (
-      <Grid container>
-        <Paper className={classes.root}>
-          <InputBase
-            className={classes.input}
-            placeholder="Email de usuário"
-            value={values.email}
-            onChange={handleChange('email')}
-            inputProps={{ 'aria-label': 'Email de usuário' }}
-          />
-          <Button onClick={addUserToList} variant="contained" color="primary">Adicionar Usuário</Button>
-        </Paper>
-        
-        <Grid item xs={12}>
-          <p style={{margin:0, padding: '18px 15px 0 20px'}}>Usuários com permissões</p>
-        </Grid>
+    <Grid container>
+      <Paper className={classes.root}>
+        <InputBase
+          className={classes.input}
+          placeholder="Email de usuário"
+          value={values.email}
+          onChange={handleChange('email')}
+          inputProps={{ 'aria-label': 'Email de usuário' }}
+        />
+        <Button onClick={addUserToList} variant="contained" color="primary">Adicionar Usuário</Button>
+      </Paper>
 
-        <Grid item xs={12} style={{marginTop: 15}}>
-          <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            className={classes.root}
-            >
-              {users.map((value, index) => {
-                  return <ListItem key={index} button>
-                              <ListItemIcon>
-                                <AccountBoxIcon />
-                              </ListItemIcon>
-                              <ListItemText primary={value['user']['email']} />
-                              <Button onClick={() => unshare(value['user']['email'])}><DeleteIcon /></Button>
-                          </ListItem>
-              })}
-              {users.length == 0 && <Button>Nenhum usuário adicionado.</Button>}
-          </List>
-        </Grid>
+      <Grid item xs={12}>
+        <p style={{ margin: 0, padding: '18px 15px 0 20px' }}>Usuários com permissões</p>
+      </Grid>
+
+      <Grid item xs={12} style={{ marginTop: 15 }}>
+        <List
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          className={classes.root}
+        >
+          {users.map((value, index) => {
+            return <ListItem key={index} button>
+              <ListItemIcon>
+                <AccountBoxIcon />
+              </ListItemIcon>
+              <ListItemText primary={value['user']['email']} />
+              <Button onClick={() => unshare(value['user']['email'])}><DeleteIcon /></Button>
+            </ListItem>
+          })}
+          {users.length === 0 && <Button>Nenhum usuário adicionado.</Button>}
+        </List>
+      </Grid>
     </Grid>
   );
 }

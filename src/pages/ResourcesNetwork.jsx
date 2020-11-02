@@ -15,8 +15,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import InfiniteScroll from 'react-infinite-scroller';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import { Link } from "react-router-dom";
 
 import "assets/css/infiniteScroll.css";
 
@@ -105,7 +103,10 @@ function ResourcesNetwork(props) {
 
     var url = new URL(window.location.href);
     var tab = url.searchParams.get("tab") ? url.searchParams.get("tab") : "general";
-    setValues({ ...values, tab_id: tab });
+    setValues(prevState => ({
+      ...prevState,
+      tab_id: tab
+    }));
 
   }, []);
 
@@ -212,7 +213,7 @@ function ResourcesNetwork(props) {
 
   function getActivitysItem() {
     var items = [];
-    values.tracks.map((track, i) => {
+    values.tracks.forEach((track, i) => {
       const label = track['label'].toLowerCase();
       items.push(
         <ListItem key={i} button onClick={() => history.push(`/painel/cursos/${values.network_id}/atividade/editar/${label}/uuid/${track['uuid']}`)}>

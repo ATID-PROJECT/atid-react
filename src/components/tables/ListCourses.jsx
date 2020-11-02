@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx'; 
+import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -20,7 +20,6 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 import { userService } from '_services';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -77,13 +76,13 @@ function EnhancedTableHead(props) {
       <TableRow>
         <TableCell padding="checkbox">
           {false &&
-        
+
             <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
-          />}
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={numSelected === rowCount}
+              onChange={onSelectAllClick}
+              inputProps={{ 'aria-label': 'select all desserts' }}
+            />}
         </TableCell>
         {headCells.map(headCell => (
           <TableCell
@@ -129,13 +128,13 @@ const useToolbarStyles = makeStyles(theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
       : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
   spacer: {
     flex: '1 1 100%',
   },
@@ -163,10 +162,10 @@ const EnhancedTableToolbar = props => {
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography variant="h6" id="tableTitle">
-            Turmas criadas
-          </Typography>
-        )}
+            <Typography variant="h6" id="tableTitle">
+              Turmas criadas
+            </Typography>
+          )}
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
@@ -177,12 +176,12 @@ const EnhancedTableToolbar = props => {
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
+            <Tooltip title="Filter list">
+              <IconButton aria-label="filter list">
+                <FilterListIcon />
+              </IconButton>
+            </Tooltip>
+          )}
       </div>
     </Toolbar>
   );
@@ -226,35 +225,34 @@ export default function ListCourses() {
   const [orderBy, setOrderBy] = React.useState('created_at');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense,] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const [rowsValue, setRowsValue] = React.useState([]);
 
   const [load, setLoad] = React.useState(false);
 
-  if( !load )
-  {
+  if (!load) {
     setLoad(true);
 
     userService.sendGETRequest('/courses/getall', {
       page: 1,
       page_size: 150
-    }, 
-      function(response){
+    },
+      function (response) {
 
-        const rows = response.map(function(item, index){
+        const rows = response.map(function (item, index) {
           return createData(
             `/painel/turma/${item.id}/rede/${item.network_id}`,
-            item.fullname, 
-            item.shortname, 
+            item.fullname,
+            item.shortname,
             item.students,
-            item.created_at, 
+            item.created_at,
             <></>
-            );
+          );
         });
         setRowsValue(rows);
-    });
+      });
   }
 
   function handleRequestSort(event, property) {
@@ -273,25 +271,25 @@ export default function ListCourses() {
   }
 
   function handleClick(event, name) {
-    return;
-
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    setSelected(newSelected);
+    /* return;
+ 
+     const selectedIndex = selected.indexOf(name);
+     let newSelected = [];
+ 
+     if (selectedIndex === -1) {
+       newSelected = newSelected.concat(selected, name);
+     } else if (selectedIndex === 0) {
+       newSelected = newSelected.concat(selected.slice(1));
+     } else if (selectedIndex === selected.length - 1) {
+       newSelected = newSelected.concat(selected.slice(0, -1));
+     } else if (selectedIndex > 0) {
+       newSelected = newSelected.concat(
+         selected.slice(0, selectedIndex),
+         selected.slice(selectedIndex + 1),
+       );
+     }
+ 
+     setSelected(newSelected);*/
   }
 
   function handleChangePage(event, newPage) {
@@ -303,9 +301,9 @@ export default function ListCourses() {
     setPage(0);
   }
 
-  function handleChangeDense(event) {
+  /*function handleChangeDense(event) {
     setDense(event.target.checked);
-  }
+  }*/
 
   const isSelected = name => selected.indexOf(name) !== -1;
 
@@ -351,7 +349,7 @@ export default function ListCourses() {
                     >
                       <TableCell padding="checkbox">
                         {false &&
-                            <Checkbox
+                          <Checkbox
                             checked={isItemSelected}
                             inputProps={{ 'aria-labelledby': labelId }}
                           />
@@ -365,7 +363,7 @@ export default function ListCourses() {
                       <TableCell align="right">{new Date(row.created_at).toLocaleDateString("pt-BR")}</TableCell>
                       <TableCell align="right">{row.protein}</TableCell>
                     </TableRow>
-                    
+
                   );
                 })}
               {emptyRows > 0 && (

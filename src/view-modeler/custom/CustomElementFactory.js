@@ -1,7 +1,7 @@
 import {
   assign
 } from 'min-dash';
-
+import uuid from "uuid";
 import inherits from 'inherits';
 
 import BpmnElementFactory from 'bpmn-js/lib/features/modeling/ElementFactory';
@@ -25,16 +25,6 @@ export default function CustomElementFactory(bpmnFactory, moddle) {
    *
    * @return {djs.model.Base}
    */
-  
-  function create_UUID(){
-      var dt = new Date().getTime();
-      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = (dt + Math.random()*16)%16 | 0;
-          dt = Math.floor(dt/16);
-          return (c==='x' ? r :(r&0x3|0x8)).toString(16);
-      });
-      return uuid;
-  }
 
   this.create = function(elementType, attrs) {
 
@@ -64,7 +54,7 @@ export default function CustomElementFactory(bpmnFactory, moddle) {
     }
 
     if (!attrs.uuid && type==="custom:atividadeComposta") {
-      attrs.uuid = create_UUID();
+      attrs.uuid = uuid.v4();
     }
 
     if (!attrs.id) {

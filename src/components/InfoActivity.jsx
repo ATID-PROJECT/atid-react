@@ -13,8 +13,6 @@ import { userService } from "_services";
 import { useSelector, useDispatch } from "react-redux";
 
 import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
@@ -40,8 +38,8 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
   },
   horizontalItem: {
-      display: 'inline-block',
-      overflow: 'break'
+    display: 'inline-block',
+    overflow: 'break'
   }
 }));
 
@@ -61,14 +59,14 @@ function InfoActivity(props) {
   function handleClose() {
     dispatch(dialogActions.closeDialog("activity_info"));
     setTimeout(() => {
-      setUsers( [] );
-      setLoad( false  );
-      setCharged( false  );
-      setError( false );
+      setUsers([]);
+      setLoad(false);
+      setCharged(false);
+      setError(false);
     }, 1000);
   }
 
-  const isOpenDialog = function() {
+  const isOpenDialog = function () {
     const result =
       dialog.type === "opened" && dialog.name === "activity_info";
 
@@ -76,8 +74,8 @@ function InfoActivity(props) {
   };
 
   function loadCurrentSugestion() {
-    setLoad( true );
-     
+    setLoad(true);
+
     userService.sendGETRequest(
       "/moodle/students/",
       {
@@ -86,20 +84,18 @@ function InfoActivity(props) {
         activity_id: props.getProperties("suggestion_uuid"),
         activity_type: props.getProperties("suggestion_type")
       },
-      function(result) {
-        setCharged( true  );
-        setUsers( result );
+      function (result) {
+        setCharged(true);
+        setUsers(result);
       },
-      function(error)
-      {
-        setError( true );
-        setCharged( true  );
+      function (error) {
+        setError(true);
+        setCharged(true);
       }
     );
   }
 
-  if( !isLoad && dialog.type === "opened" && dialog.name === "activity_info")
-  {
+  if (!isLoad && dialog.type === "opened" && dialog.name === "activity_info") {
 
     loadCurrentSugestion();
   }
@@ -116,12 +112,12 @@ function InfoActivity(props) {
       >
         <DialogTitle id="responsive-dialog-title">
           {"Status dos alunos na atividade"}
-          <Button 
-          href={`/painel/turma/${id}/rede/${network}/activity/${props.curretSelectedElement.suggestion_uuid}/`}
-          target="_blank"
-          variant="contained" 
-          color="secondary" 
-          style={{marginLeft: 20}}>
+          <Button
+            href={`/painel/turma/${id}/rede/${network}/activity/${props.curretSelectedElement.suggestion_uuid}/`}
+            target="_blank"
+            variant="contained"
+            color="secondary"
+            style={{ marginLeft: 20 }}>
             Mais detalhes
           </Button>
         </DialogTitle>
@@ -132,36 +128,36 @@ function InfoActivity(props) {
           </DialogContentText>
 
           {(!isLoad || !isFullyCharged) &&
-           <div className="loader">
-            <img src={loading} alt="loading" />
-          </div>
+            <div className="loader">
+              <img src={loading} alt="loading" />
+            </div>
           }
 
           <Grid container spacing={2}>
-          {users.map((user, index) => {
-            const labelId = `checkbox-list-secondary-label-${index}`;
-            return (
-              <Grid md={3} key={index} button>
-                <ListItemAvatar>
-                  <Avatar
-                    alt={`Avatar n°${index + 1}`}
-                    src={user.profileimageurl}
-                  />
-                </ListItemAvatar>
-                <ListItemText id={labelId} primary={user.firstname} />
-  
-              </Grid>
-            );
-          })}
+            {users.map((user, index) => {
+              const labelId = `checkbox-list-secondary-label-${index}`;
+              return (
+                <Grid md={3} key={index} button>
+                  <ListItemAvatar>
+                    <Avatar
+                      alt={`Avatar n°${index + 1}`}
+                      src={user.profileimageurl}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText id={labelId} primary={user.firstname} />
 
-          {isError &&
-            <Grid className={classes.horizontalItem} button>
+                </Grid>
+              );
+            })}
+
+            {isError &&
+              <Grid className={classes.horizontalItem} button>
                 <ListItemText id={"notFound"} primary={"Nenhum usuário encontrado."} />
               </Grid>
-          }
-        </Grid>
+            }
+          </Grid>
         </DialogContent>
-        
+
       </Dialog>
     </div>
   );

@@ -236,7 +236,6 @@ class Networks extends Component {
     this.state.tracks.map((track, i) => {
       const url = track["url"];
       const token = track["token"];
-      const has_connection = url && token;
       items.push(
         <div style={{ width: "100%" }}>
           <CourseRow

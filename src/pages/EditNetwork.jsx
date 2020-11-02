@@ -8,10 +8,6 @@ import "assets/css/diagram-js.css";
 import "assets/css/vendor/bpmn-font/css/bpmn-embedded.css";
 
 import {
-  network_petris
-} from 'algorithms/validNetwork';
-
-import {
   deadlockManager
 } from 'algorithms/findDeadlock.jsx';
 
@@ -371,8 +367,8 @@ class EditNetwork extends Component {
     var transiction_activity = vetor_result[0];
     var activity_transiction = vetor_result[1];
 
-    var petri_reachability = vetor_result[2];
-    var id_names = vetor_result[3];
+    //var petri_reachability = vetor_result[2];
+    //var id_names = vetor_result[3];
 
     //network_petris.checkNext( petri_reachability, activity_transiction, transiction_activity, id_names , this.handleClickVariant);
     deadlockManager.checkErrors(activity_transiction, transiction_activity);

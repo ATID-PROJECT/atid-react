@@ -79,13 +79,11 @@ function ConfigTransiction(props) {
     load: false,
   });
 
-  if( !values.load && dialog.type === "opened" && dialog.name === "transction_config")
-  {
+  if (!values.load && dialog.type === "opened" && dialog.name === "transction_config") {
     loadConditions();
   }
 
-  function loadConditions()
-  {
+  function loadConditions() {
     var item_temp = props.getProperties("conditions");
     item_temp = item_temp ? item_temp : [];
     fixValues(item_temp);
@@ -95,17 +93,17 @@ function ConfigTransiction(props) {
 
   function create_UUID() {
     var dt = new Date().getTime();
-    var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(
+    var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (
       c
     ) {
       var r = (dt + Math.random() * 16) % 16 | 0;
       dt = Math.floor(dt / 16);
-      return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+      return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
     });
     return uuid;
   }
 
-  const ADD_AND_GROUP = function() {
+  const ADD_AND_GROUP = function () {
     var items = values.items;
     items.unshift({
       id: create_UUID(),
@@ -115,7 +113,7 @@ function ConfigTransiction(props) {
     setValues({ ...values, items: items });
   };
 
-  const ADD_OR_GROUP = function() {
+  const ADD_OR_GROUP = function () {
     var items = values.items;
     items.unshift({
       id: create_UUID(),
@@ -125,7 +123,7 @@ function ConfigTransiction(props) {
     setValues({ ...values, items: items });
   };
 
-  const ADD_QUESTION = function() {
+  const ADD_QUESTION = function () {
     var items = values.items;
     items.unshift({
       id: create_UUID(),
@@ -138,30 +136,29 @@ function ConfigTransiction(props) {
 
   function fixValues(obj) {
     for (var property in obj) {
-        if( obj[property]==null)
-        {
-            delete obj[property];
-        }
+      if (obj[property] == null) {
+        delete obj[property];
+      }
 
       if (obj.hasOwnProperty(property)) {
         if (typeof obj[property] == "object") {
-          
+
           fixValues(obj[property]);
-          }
-        
+        }
+
       }
     }
   }
 
   const renderItem = ({ item, collapseIcon, handler }) => {
     return (
-      <ConditionItem 
-      parentSetValues={setValues}
-      parentValues={values}
-      item={item}
-      collapseIcon={collapseIcon}
-      associated_activities={props.associated_activities}
-      handler={handler} />
+      <ConditionItem
+        parentSetValues={setValues}
+        parentValues={values}
+        item={item}
+        collapseIcon={collapseIcon}
+        associated_activities={props.associated_activities}
+        handler={handler} />
     );
   };
 
@@ -171,7 +168,7 @@ function ConfigTransiction(props) {
     dispatch(dialogActions.closeDialog("transction_config"));
   }
 
-  const isOpenDialog = function() {
+  const isOpenDialog = function () {
     const result =
       dialog.type === "opened" && dialog.name === "transction_config";
     return result;
@@ -266,11 +263,11 @@ function ConfigTransiction(props) {
                 Configurar transições
               </legend>
               {props.associated_activities.length > 0 ?
-              <Nestable
-                onChange={items => setValues({ ...values, items: items })}
-                items={values.items}
-                renderItem={renderItem}
-              />
+                <Nestable
+                  onChange={items => setValues({ ...values, items: items })}
+                  items={values.items}
+                  renderItem={renderItem}
+                />
                 :
                 <p>Conecta esta transição com um nó <b>associado</b> a uma atividade.</p>
               }

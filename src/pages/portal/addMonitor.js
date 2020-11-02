@@ -31,7 +31,7 @@ const AddMonitor = props => {
     let updated_options = [...monitorsOptions];
     for(let i = 0; i < updated_options.length; i++)
     {
-      if( updated_options[i].title == option)
+      if( updated_options[i].title === option)
       updated_options[i].selected = !updated_options[i].selected;
     }
     setMonitorsOptions( updated_options );

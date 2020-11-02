@@ -4,6 +4,7 @@ import {
   pick,
   assign
 } from 'min-dash';
+import uuid from "uuid";
 
 import CommandInterceptor from 'diagram-js/lib/command/CommandInterceptor';
 
@@ -16,15 +17,6 @@ import {
  * A handler responsible for updating the custom element's businessObject
  * once changes on the diagram happen.
  */
-function create_UUID(){
-  var dt = new Date().getTime();
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = (dt + Math.random()*16)%16 | 0;
-      dt = Math.floor(dt/16);
-      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-  });
-  return uuid;
-}
 
 export default function CustomUpdater(eventBus, bpmnjs) {
 
@@ -72,7 +64,7 @@ export default function CustomUpdater(eventBus, bpmnjs) {
     }
 
     if(businessObject.type === "custom:atividadeComposta" && !businessObject.uuid){
-      businessObject.uuid = create_UUID();
+      businessObject.uuid = uuid.v4();
     }
     else if((businessObject.type === "custom:atividadeBasica" || businessObject.type === "custom:start" 
             || businessObject.type === "custom:end") && !businessObject.name){
