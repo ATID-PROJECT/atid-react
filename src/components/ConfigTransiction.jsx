@@ -8,6 +8,7 @@ import { Grid } from "@material-ui/core";
 
 import Slide from "@material-ui/core/Slide";
 import Nestable from "react-nestable";
+import uuid from "uuid";
 
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     position: "relative",
-    background: "#3f51b5 !important"
+    background: "#04709E !important"
   },
   container: {
     flexGrow: 1,
@@ -91,42 +92,10 @@ function ConfigTransiction(props) {
     setValues({ ...values, items: item_temp, load: true });
   }
 
-  function create_UUID() {
-    var dt = new Date().getTime();
-    var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (
-      c
-    ) {
-      var r = (dt + Math.random() * 16) % 16 | 0;
-      dt = Math.floor(dt / 16);
-      return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
-    });
-    return uuid;
-  }
-
-  const ADD_AND_GROUP = function () {
-    var items = values.items;
-    items.unshift({
-      id: create_UUID(),
-      type: "and",
-      text: "TODAS DEVEM SER CUMPRIDAS"
-    });
-    setValues({ ...values, items: items });
-  };
-
-  const ADD_OR_GROUP = function () {
-    var items = values.items;
-    items.unshift({
-      id: create_UUID(),
-      type: "or",
-      text: "PELO MENOS UMA DEVE SER CUMPRIDA"
-    });
-    setValues({ ...values, items: items });
-  };
-
   const ADD_QUESTION = function () {
     var items = values.items;
     items.unshift({
-      id: create_UUID(),
+      id: uuid.v4(),
       type: "question",
       question: "",
       text: "Condição não configurada."
@@ -217,28 +186,7 @@ function ConfigTransiction(props) {
           </div>
           <Grid item md={12} xs={12}>
             <div style={{ padding: "10px 0", textAlign: "right" }}>
-              <Fab
-                variant="extended"
-                size="small"
-                color="primary"
-                aria-label="add"
-                className={classes.margin}
-                onClick={ADD_AND_GROUP}
-              >
-                <AddIcon className={classes.extendedIcon} />
-                GRUPO TODOS OBRIGATÓRIOS
-              </Fab>
-              <Fab
-                variant="extended"
-                size="small"
-                color="primary"
-                aria-label="add"
-                className={classes.margin}
-                onClick={ADD_OR_GROUP}
-              >
-                <AddIcon className={classes.extendedIcon} />
-                GRUPO MÍNIMO 1 CONCLUÍDO
-              </Fab>
+
               <Fab
                 variant="extended"
                 size="small"
@@ -253,15 +201,8 @@ function ConfigTransiction(props) {
             </div>
           </Grid>
           <Grid item md={12} xs={12}>
-            <fieldset
-              style={{
-                padding: "15px",
-                border: "1px solid #788493"
-              }}
-            >
-              <legend style={{ padding: "0 10px", width: "auto" }}>
-                Configurar transições
-              </legend>
+            <div className="card p-3">
+              <h2 className="mb-4">Configurar transições</h2>
               {props.associated_activities.length > 0 ?
                 <Nestable
                   onChange={items => setValues({ ...values, items: items })}
@@ -271,7 +212,12 @@ function ConfigTransiction(props) {
                 :
                 <p>Conecta esta transição com um nó <b>associado</b> a uma atividade.</p>
               }
-            </fieldset>
+              {values.items.length === 0 &&
+                <div class="alert alert-info" role="alert">
+                  Nenhuma condição existente para esta transição.
+              </div>
+              }
+            </div>
           </Grid>
         </Grid>
       </Dialog>
