@@ -442,7 +442,7 @@ class EditNetwork extends Component {
 
         <div className="content with-diagram" id="js-drop-zone">
           <div
-            style={{ height: "calc(100vh - 50px)" }}
+            style={{ height: "calc(100vh - 50px)", minHeight: 470 }}
             className="canvas"
             id="canvas"
           ></div>

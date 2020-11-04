@@ -59,6 +59,34 @@
   background-size: 100% 100%; 
 }
 
+.icon-custom-evento::before {
+  content: "Evento";
+  position: absolute;
+  font-size: 14px;
+  top: calc(50*1);
+  right: 50px;
+  color: #545151;
+}
+
+.icon-custom-repositorio::before {
+  content: "Repositório";
+  position: absolute;
+  font-size: 14px;
+  top: calc(50*1);
+  right: 50px;
+  color: #545151;
+}
+
+.icon-custom-atividade-composta::before {
+  content: "Sub-rede";
+  position: absolute;
+  font-size: 14px;
+  top: calc(50*1);
+  right: 50px;
+  color: #545151;
+}
+
+
 .icon-custom-circle::before {
   content: "Início";
   position: absolute;

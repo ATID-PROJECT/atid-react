@@ -146,7 +146,8 @@ CustomElementFactory.prototype._getCustomElementSize = function(type) {
     'custom:end': { width: 40, height: 40 },
     'custom:atividadeBasica': { width: 40, height: 40 },
     'custom:atividadeComposta': { width: 40, height: 40 },
-    'custom:transicao': { width: 40, height: 60 }
+    'custom:transicao': { width: 40, height: 60 },
+    'custom:repositorio': { width: 40, height: 40 }
   };
 
   return shapes[type] || shapes.__default;

@@ -29,8 +29,8 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
 
   var actions  = {},
       create = this._create,
-      elementFactory = this._elementFactory,
-      lassoTool = this._lassoTool;
+      elementFactory = this._elementFactory;
+      //lassoTool = this._lassoTool;
 
 
   function createAction(type, group, className, title, options) {
@@ -65,32 +65,24 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     'create.end': createAction(
       'custom:end', 'custom', 'icon-custom-end', 'Definir o final'
     ),
-    'custom-transicao': createAction(
-      'custom:transicao', 'custom', 'icon-custom-transicao', 'Criar uma condição'
-    ),
     'custom-separator': {
       group: 'custom',
       separator: true
     },
-    'lasso-tool': {
-      group: 'tools',
-      className: 'bpmn-icon-lasso-tool',
-      title: 'Ativar a ferramenta de laço',
-      action: {
-        click: function(event) {
-          lassoTool.activateSelection(event);
-        }
-      }
-    },
-    'tool-separator': {
-      group: 'tools',
-      separator: true
-    },
+    'custom-transicao': createAction(
+      'custom:transicao', 'custom', 'icon-custom-transicao', 'Criar uma condição'
+    ),
     'custom-atividade-basica': createAction(
       'custom:atividadeBasica', 'event', 'icon-custom-atividade-basica', 'Criar uma atividade'
     ),
     'custom-atividade-composta': createAction(
       'custom:atividadeComposta', 'event', 'icon-custom-atividade-composta', 'Criar um sub-rede'
+    ),
+    'custom-repositorio': createAction(
+      'custom:repositorio', 'event', 'icon-custom-repositorio', 'Criar um repositório'
+    ),
+    'custom-evento': createAction(
+      'custom:evento', 'event', 'icon-custom-evento', 'Criar um evento'
     ),
   });
 
