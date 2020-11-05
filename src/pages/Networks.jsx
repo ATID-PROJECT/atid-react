@@ -361,6 +361,8 @@ class Networks extends Component {
         <Connection
           access_token={this.state.access_token}
           ava_address={this.state.ava_address}
+          course_name={this.state.course_name}
+          initials={this.state.initials}
           handleChange={this.handleChange}
         />
 

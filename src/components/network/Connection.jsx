@@ -69,46 +69,48 @@ function Connection(props) {
     dispatch(dialogActions.closeDialog("activity_config"));
   }
 
-  const isOpenDialog = function() {
+  const isOpenDialog = function () {
     const result =
       dialog.type === "opened" && dialog.name === "connection_network";
 
     return result;
   };
 
-  function verifyMoodleToken(){
+  function verifyMoodleToken() {
 
-    userService.sendGETRequest('/moodle/test', {
+    userService.sendPOSTRequest('/moodle/new_course', {
       url: props.ava_address,
       token: props.access_token,
       network_id: dialog.id_network,
+      fullname: props.course_name,
+      shortname: props.initials
     },
-    function(result){
-      
-      handleClose();
-      toast("O ambiente virtual foi conectado a rede.", {
-        transition: Bounce,
-        closeButton: true,
-        autoClose: 4000,
-        position: 'bottom-right',
-        type: 'success'
-    });
+      function (result) {
 
-      setTimeout(function () {
-          
-        window.location.reload(true); 
-      }, 4000);
-    },
-    function(error){
-      toast("As credenciais fornecidas não são válidas.", {
-        transition: Bounce,
-        closeButton: true,
-        autoClose: 4000,
-        position: 'bottom-right',
-        type: 'error'
-    });
-      
-    });
+        handleClose();
+        toast("O ambiente virtual foi conectado a rede.", {
+          transition: Bounce,
+          closeButton: true,
+          autoClose: 4000,
+          position: 'bottom-right',
+          type: 'success'
+        });
+
+        setTimeout(function () {
+
+          window.location.reload(true);
+        }, 4000);
+      },
+      function (error) {
+        toast("As credenciais fornecidas não são válidas.", {
+          transition: Bounce,
+          closeButton: true,
+          autoClose: 4000,
+          position: 'bottom-right',
+          type: 'error'
+        });
+
+      });
 
   }
 
@@ -127,25 +129,47 @@ function Connection(props) {
           <Grid container>
             <Grid item xs={12}>
               <TextField
-              fullWidth
-              id="standard-address"
-              label="Endereço do sistema"
-              className={classes.textField}
-              value={props.ava_address}
-              onChange={props.handleChange('ava_address')}
-              margin="normal"
-            />
+                fullWidth
+                id="standard-address"
+                label="Endereço do sistema"
+                className={classes.textField}
+                value={props.ava_address}
+                onChange={props.handleChange('ava_address')}
+                margin="normal"
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField
-              fullWidth
-              id="standard-address"
-              label="Token de acesso"
-              className={classes.textField}
-              value={props.access_token}
-              onChange={props.handleChange('access_token')}
-              margin="normal"
-            />
+                fullWidth
+                id="standard-address"
+                label="Token de acesso"
+                className={classes.textField}
+                value={props.access_token}
+                onChange={props.handleChange('access_token')}
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="course-name"
+                fullWidth
+                label="Nome do curso"
+                className={classes.textField}
+                value={props.course_name}
+                onChange={props.handleChange('course_name')}
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="initials"
+                fullWidth
+                label="Sigla"
+                className={classes.textField}
+                value={props.initials}
+                onChange={props.handleChange('initials')}
+                margin="normal"
+              />
             </Grid>
           </Grid>
         </DialogContent>
@@ -154,7 +178,7 @@ function Connection(props) {
             Fechar
           </Button>
           <Button onClick={verifyMoodleToken} color="primary" variant="contained" autoFocus>
-              Conectar
+            Criar
           </Button>
         </DialogActions>
       </Dialog>

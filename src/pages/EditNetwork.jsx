@@ -321,7 +321,6 @@ class EditNetwork extends Component {
       function (response) {
 
         that.setState({ title_network: response["name"] });
-
         that.modeler.addCustomElements(JSON.parse(response["all_data"]));
 
       }
